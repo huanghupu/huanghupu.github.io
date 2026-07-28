@@ -1,37 +1,35 @@
 ---
 layout: compress
 ---
-<div style="text-align: center; margin: 5rem 0;">
-  <a href="https://gitee.com/yv-deshui/projects" target="_blank" style="
-    display: inline-block;
-    padding: 16px 36px;
-    background-color: #c7000b;
-    color: #fff;
-    font-size: 20px;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  ">访问我的项目</a>
-  <style>
-    a:hover {
-      background:#a10009 !important;
-      transform:scale(1.05);
-    }
-  </style>
-</div>
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+    <!-- 按钮hover样式移至head，规范写法 -->
+    <style>
+      .gitee-btn {
+        position: relative;
+        z-index: 9999;
+        display: inline-block;
+        padding: 16px 36px;
+        background-color: #c7000b;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .gitee-btn:hover {
+        background:#a10009 !important;
+        transform:scale(1.05);
+      }
+    </style>
   </head>
 
   <body>
-
     {% include browser-upgrade.html %}
-    
 
     <div id="main" role="main">
       {% include sidebar.html %}
@@ -39,6 +37,10 @@ layout: compress
       <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
         {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
         <div class="page__inner-wrap">
+          <!-- 按钮放到页面正文最顶部，body合法区域内 -->
+          <div style="text-align: center; margin: 5rem 0;">
+            <a class="gitee-btn" href="https://gitee.com/yv-deshui/projects" target="_blank">🔥访问我的项目</a>
+          </div>
           <section class="page__content" itemprop="text">
             {{ content }}
           </section>
@@ -47,6 +49,5 @@ layout: compress
     </div>
 
     {% include scripts.html %}
-
   </body>
 </html>
